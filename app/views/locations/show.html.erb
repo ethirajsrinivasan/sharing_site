@@ -1,0 +1,23 @@
+<br>
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Shared_by</th>
+    <th>Shared_with</th>
+  </tr>
+  <tr>
+    <td><%= @location.latitude %></td>
+    <td><%= @location.longitude %></td>
+    <td><%= link_to @location.user.username, user_path(@location.user.username), class: "btn btn-small btn-primary" %></td>
+    <td><% @location.shared_users.each do |user| %>
+    <%= link_to user.username, user_path(user.username), class: "btn btn-small btn-primary" %>
+    <% end %>
+    </td>
+  </tr>
+</table>
+<div id="map" class="map" data-latitude= <%= @location.latitude %> data-longitude= <%= @location.longitude %> data-markerpath= <%= asset_path("marker.svg") %> >
+</div>
+<br>
+<%= link_to :Back, :back, class: "btn btn-primary" %>
+<%= link_to :Home, root_path, class: "btn btn-primary" %>
